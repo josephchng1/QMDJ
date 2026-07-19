@@ -5,6 +5,7 @@ import { Controls } from './components/Controls.tsx';
 import { SummaryHeader } from './components/SummaryHeader.tsx';
 import { PalaceGrid } from './components/PalaceGrid.tsx';
 import { FourPillarsBar } from './components/FourPillarsBar.tsx';
+import { Legend } from './components/Legend.tsx';
 
 type Method = 'zhirun' | 'chaibu';
 interface UiState {
@@ -41,6 +42,7 @@ function initialState(): UiState {
 
 export default function App() {
   const [ui, setUi] = useState<UiState>(initialState);
+  const [copied, setCopied] = useState(false);
 
   // deep-link sync (spec §6.2): navigation state lives in the URL
   useEffect(() => {
@@ -70,12 +72,20 @@ export default function App() {
     return { ...s, y: d.getFullYear(), m: d.getMonth() + 1, d: d.getDate(),
              hh: d.getHours(), mm: d.getMinutes() };
   });
+  const share = async () => {
+    try { await navigator.clipboard.writeText(location.href); }
+    catch { /* clipboard blocked — URL is already the address bar */ }
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1500);
+  };
 
   return (
     <div className="min-h-full max-w-6xl mx-auto px-4 py-6">
       <header className="flex items-baseline gap-3 mb-5">
         <h1 className="text-xl font-semibold gold tracking-widest">奇門遁甲</h1>
         <span className="text-xs" style={{ color: 'var(--text-dim)' }}>Qimen Dunjia · 时家转盘</span>
+        <button className="seg rounded-lg px-3 py-1.5 text-xs ml-auto" onClick={share}
+                title="复制当前盘的链接">{copied ? '已复制 ✓' : '复制链接'}</button>
       </header>
 
       <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] items-start">
@@ -104,6 +114,7 @@ export default function App() {
           {error && <div className="panel p-4" style={{ color: 'var(--q-bad)' }}>计算出错：{error}</div>}
           {!error && chart && <PalaceGrid board={chart.board} />}
           {loading && !chart && <div className="panel p-8 text-center" style={{ color: 'var(--text-dim)' }}>计算中…</div>}
+          {chart && <div className="mt-4"><Legend /></div>}
         </div>
       </div>
     </div>

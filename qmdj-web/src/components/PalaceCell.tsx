@@ -15,7 +15,7 @@ export function PalaceCell({ palace }: { palace: Palace }) {
 
   if (isCentre) {
     return (
-      <div className="relative flex flex-col items-center justify-center p-2 aspect-square"
+      <div className="cell relative flex flex-col items-center justify-center p-2 aspect-square"
            style={{ background: 'var(--bg-cell-2)', border: `1px solid var(--border)`, borderRadius: 10 }}>
         <div className="text-xs" style={{ color: 'var(--text-dim)' }}>中五宫</div>
         <div className="text-2xl font-semibold mt-1" style={{ color: stemColor(palace.diPanStem) }}>
@@ -25,8 +25,10 @@ export function PalaceCell({ palace }: { palace: Palace }) {
     );
   }
 
+  const isFocus = palace.isZhiFu || palace.isZhiShi;
+
   return (
-    <div className="relative flex flex-col p-2 aspect-square"
+    <div className={`cell relative flex flex-col p-2 aspect-square${isFocus ? ' cell-focus' : ''}`}
          style={{ background: 'var(--bg-cell)', border: `1px solid ${borderColor}44`,
                   borderRadius: 10, boxShadow: `inset 0 0 24px ${borderColor}0d` }}>
       {/* corner markers */}

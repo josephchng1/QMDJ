@@ -70,3 +70,22 @@ input[type="datetime-local"], input.field {
   color-scheme: dark;
   border-radius: 8px;
 }
+
+/* ---- palace cell interaction + emphasis ---- */
+.cell {
+  transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+  will-change: transform;
+}
+.cell:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--gold) 55%, transparent) !important;
+}
+/* 值符 / 值使 palaces: gold ring so the eye finds them instantly */
+.cell-focus {
+  box-shadow: 0 0 0 1px var(--gold-dim), 0 0 18px rgba(212,175,55,0.22) !important;
+  border-color: var(--gold-dim) !important;
+}
+
+/* swatch dots used in the legend */
+.swatch { display: inline-block; width: 10px; height: 10px; border-radius: 50%; flex: 0 0 auto; }
+
