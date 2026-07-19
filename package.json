@@ -1,0 +1,13 @@
+{
+  "name": "qimen-zhirun-engine",
+  "version": "1.0.0",
+  "description": "时家奇门遁甲 chart engine with 置闰法 (traditional intercalation) and 拆补法 ju determination, astronomical solar terms, and a full 转盘 board builder.",
+  "type": "module",
+  "main": "src/index.ts",
+  "scripts": {
+    "test": "node --experimental-strip-types tests/run.ts",
+    "example": "node --experimental-strip-types example.ts"
+  },
+  "engines": { "node": ">=22.7" },
+  "license": "MIT"
+}
