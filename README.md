@@ -1,3 +1,8 @@
+> **Archived — development has moved to [QMDJ-Calendar](https://github.com/josephchng1/QMDJ-Calendar).**
+> The engine now lives in `src/engine/` there, with its reference suite and golden
+> fixtures in `packages/engine/tests/`. Fix engine bugs there, not here; this copy
+> is no longer kept in sync. The old `qmdj-web/` frontend was superseded by that app.
+
 # 时家奇门遁甲 Engine — 置闰法 (Zhi Run) + 拆补法
 
 A self-contained TypeScript engine for the QMDJ app. No external dependencies. Computes astronomical solar terms, four pillars, 局数 by 置闰法 and 拆补法, and the full 转盘 nine-palace board (九星, 八门, 八神, 天盘/地盘干, 值符/值使, 空亡, 马星).
